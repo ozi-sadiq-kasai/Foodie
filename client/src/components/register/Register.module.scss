@@ -1,113 +1,139 @@
-:global(body){
-    padding:0 !important;
+:global(body) {
+  padding: 0 !important;
+  overflow: hidden;
 }
+h1{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  span{
+    color: var(--highlight);
+  }
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 
-.register {
-    position: relative;
+  &__form-div {
+    flex: 1.5;
     height: 100vh;
-    overflow: hidden;
-    &__backgroundImageTop{
-        position:absolute;
-        width: 20%;
-        top: -20px;
-        right: -90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  &__form{
+    background-color: var(--white);
+    height: 65%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+   
+  }
+  &__input-box {
+    display: flex;
+    border-bottom: 1px solid var(--grey-100);
+    width: 85%;
+    margin-bottom: 2rem;
+    position: relative;
+    
+    label {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      color: var(--grey-400);
     }
-    &__backgroundImageBottom{
-        position:absolute;
-        width: 20%;
-        bottom: -50px;
-        left: -40px;
+    input {
+      border: none;
+      outline: none;
+      padding: 10px;
+      padding-left: 30px; /* Space for the icon */
+      width: 100%;
+      background: none;
+      font-size: 1rem;
     }
-    &__Logo{
-   font-size: 1.5rem;
-        span{
-            color:var(--highlight)
-        }
+   
+  }
+  &__terms{
+    width: 55%;
+      margin: 10px auto;
+      text-align: center;
+      font-size: 13px;
+      span{
+          color:black;
+          font-weight: bold;
+      } 
+  }
+  &__google{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    &::before,
+    &::after{
+      content: ''; 
+      flex: 1; 
+      border-bottom: 1px solid var(--grey-300);
+      margin: 10px 25px; 
     }
-    &__create{
-        height: 90vh;
+    span{
+        font-size: 14px;
+        color:var(--grey-300);
     }
-    &__content{
-        display: flex;
-        align-items: center;
-        justify-content:space-evenly;
-        min-height: 80%;
+}
+&__icon{
+  cursor: pointer;
+}
+&__salad-img{
+  position:absolute;
+  top:-2px;
+  right: -45px;
+  width: 29%;
+}
+&__lemons-img{
+  position:absolute;
+  bottom:-75px;
+  left: -45px;
+  width: 35%;
+}
+ 
+  // animation for floating
+  .focused {
+    top: -7px;
+    left: 10px;
+    font-size: 0.8rem;
+    color: var(--highlight); /* Color for focused label */
+    span{
+      color: var(--highlight);
     }
-    &__signup{
-        background-color: var(--white);
-        display: flex;
-        flex-direction: column;
-      
-        form{
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            gap: 10px;
-            label{
-                padding: 4px 3px;
-                background-color: var(--grey-50);
-                border: 1px solid var(--grey-100);
-                border-radius:10px
-            }
-            input{
-                background-color: var(--grey-50);
-                border: transparent;
-            &:focus{
-                border: none;
-                outline: none;
-            }
-            }
+  }
 
-            button{
-                width: 70%;
-                margin: 0 auto ;
-                border-radius: 10px;
-            }
-        }
-    }
-    &__terms{
-        width: 90%;
-        margin: 10px auto;
-        text-align: center;
-        font-size: 12px;
-        span{
-            color:black;
-            font-weight: bold;
-        }
-    }
-    &__google{
-        display: flex;
-        align-items: center;
-        &::before,
-        &::after{
-            content: '';
-            flex: 1;
-            border-bottom:1px solid black;
-            margin: 0 10px;
-        }
-        span{
-            font-size: 12px;
-            color: var(--grey-600);
-        }
-    }
-    &__icon{
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    &__info{
-        h2{
-          margin-bottom: -10px;
-        }
-        
-        li{
 
-            margin-bottom: 12px;
-        }
-        span{
-            font-size: 12px;
-            color: var(--grey-600);
-        }
+  &__create {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // align-items: start;
+    
+    h2{
+      margin-bottom: -10px;
+      font-weight: 900;
     }
+    p{
+      font-weight: 900;
+    }
+    li{
+      margin-bottom: 12px;
+    }
+  }
 
 }

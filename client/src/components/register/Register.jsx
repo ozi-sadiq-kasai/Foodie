@@ -1,106 +1,155 @@
-import salad1 from '../../assets/remove1.png';
-import salad2 from '../../assets/lemons.png';
-import styles from './Register.module.scss';
+import { GoPerson } from 'react-icons/go';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { FcGoogle } from 'react-icons/fc';
 import { PiBowlFoodThin } from 'react-icons/pi';
-import Footer from '../footer/Footer'
-import axios from 'axios';
-//import showToast from '../../../../utils/toastify';
+import { GoUnlock } from 'react-icons/go';
+import styles from './Register.module.scss';
 import { useState } from 'react';
+import lemons from '../../assets/lemons.png'
+import salad from '../../assets/salad.png'
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-const handleSubmitForm = async (e) => {
-  e.preventDefault()
-  const data = {name,email,password}
-  try {
-    const response = await axios.post('http://localhost:4000/api/auth/register',data)
-    console.log('Response',response)  
-  } catch (error) {
-    console.log('Error',error)
-  }
-  setName('')   
-  setEmail('')
-  setPassword('')
-}
-const googleSubmit = (e) => {
-  e.preventDefault();
-  // window.location.href = 'http://localhost:4000/api/auth/google'; // This redirects the user to Google OAuth
-};
+  const [focus, setFocus] = useState({
+    username: false,
+    email: false,
+    password: false,
+  });
 
-
-  const Items = [
+  const items = [
     'Manage your recipes the easy way',
     'More than 15,000 recipes from around the world',
     'Share recipes with your friends and discover new ones',
-    'Organize recipes by tag,share it with your friends',
+    'Organize recipes by tag, share it with your friends',
     'Invite your friends to join and start sharing your recipes',
   ];
 
-  return (
-    <main className={styles.register}>
-      <img
-        src={salad1}
-        alt='salad bowls'
-        className={styles['register__backgroundImageTop']}
-      />
-      <h1 className={styles['register__Logo']}>
-        F<span>OO</span>DIE
-      </h1>
-      <div className={styles['register__create']}>
-        <div className={styles['register__content']}>
-          <div className={styles['register__signup']}>
+  const handleFocus = (field) => {
+    setFocus((prevFocus) => ({
+      ...prevFocus,
+      [field]: true,
+    }));
+  };
 
-            <form onSubmit={handleSubmitForm}>
-              <label>
-                Name
-                <input type='text' id='name' value={name} onChange={(e)=>setName(e.target.value)} />
-              </label>
-              <label>
-                Enter
-                <input type='email' id='email' value={email} onChange={e => setEmail(e.target.value)} />
-              </label>
-              <label htmlFor='password'>
-                Password
-                <input type='password' id='password' value={password} onChange={e=> setPassword(e.target.value)} />
-              </label>
-              <button className='btn' type='submit'>Create Account</button>
-            </form>
-            <p className={styles['register__terms']}>
-              By clicking on &apos;Create Account&apos; you are agreeing to the{' '}
-              <span> Terms of Service </span>and the{' '}
-              <span> Privacy Policy </span>
-            </p>
-            <div className={styles['register__google']}>
-              <span>Join with</span>
-            </div>
-            <a onClick={googleSubmit}> 
-              <FcGoogle className={styles['register__icon']} size={24} />
-            </a>
+  const handleBlur = (field, value) => {
+    if (!value) {
+      setFocus((prevFocus) => ({
+        ...prevFocus,
+        [field]: false,
+      }));
+    }
+  };
+
+  return (
+    <div className={styles.wrapper}>
+        <h1>f<span>oo</span>die</h1>
+        <img src={salad} alt="salad bowl" className={styles['wrapper__salad-img']}/>
+      <div className={styles['wrapper__form-div']}>
+        <form action='#' className={styles['wrapper__form']}>
+          <div className={styles['wrapper__input-box']}>
+            <label
+              htmlFor='username'
+              className={
+                focus.username || document.getElementById('username')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              Username
+            </label>
+            <input
+              type='text'
+              id='username'
+              required
+              onFocus={() => handleFocus('username')}
+              onBlur={(e) => handleBlur('username', e.target.value)}
+            />
+            <span
+              className={
+                focus.username || document.getElementById('username')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              <GoPerson />
+            </span>
           </div>
-          <div className={styles['register__info']}>{}
-            <h2>Create Account</h2>
-            <p>What you will get?</p>
-            {Items.map((item) => (
-              <ul key={item}>
-                <li>
-                  <PiBowlFoodThin /> {item}
-                </li>
-              </ul>
-            ))}
+          <div className={styles['wrapper__input-box']}>
+            <label
+              htmlFor='email'
+              className={
+                focus.email || document.getElementById('email')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              Email
+            </label>
+            <input
+              type='email'
+              id='email'
+              required
+              onFocus={() => handleFocus('email')}
+              onBlur={(e) => handleBlur('email', e.target.value)}
+            />
+            <span
+              className={
+                focus.email || document.getElementById('email')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              <MdOutlineAlternateEmail />
+            </span>
           </div>
+          <div className={styles['wrapper__input-box']}>
+            <label
+              htmlFor='password'
+              className={
+                focus.password || document.getElementById('password')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              Password
+            </label>
+            <input
+              type='password'
+              id='password'
+              required
+              onFocus={() => handleFocus('password')}
+              onBlur={(e) => handleBlur('password', e.target.value)}
+            />
+            <span
+              className={
+                focus.password || document.getElementById('password')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              <GoUnlock />
+            </span>
+          </div>
+          <p className={styles['wrapper__terms']}>
+            By clicking on &apos;Create Account&apos; you are agreeing to the{' '}
+            <span> Terms of Service </span>and the<span> Privacy Policy </span>
+          </p>
+          <button className='btn'>Create Account</button>
+          <div className={styles['wrapper__google']}>
+          <span>Join with</span>
         </div>
-      <Footer />
+        <a>
+          <FcGoogle size={24} className={styles['wrapper__icon']} />
+        </a>
+        </form>
+       
       </div>
-      <img
-        src={salad2}
-        alt='salad ingredients'
-        className={styles['register__backgroundImageBottom']}
-      />
-    </main>
+      <div className={styles['wrapper__create']}>
+        <h2>Create Account</h2>
+        <p>What you will get?</p>
+        {items.map((item) => (
+          <ul key={item}>
+            <li>
+              <PiBowlFoodThin /> {item}
+            </li>
+          </ul>
+        ))}
+      </div>
+      <img src={lemons } alt="lemons" className={styles['wrapper__lemons-img']} />
+    </div>
   );
 };
 
