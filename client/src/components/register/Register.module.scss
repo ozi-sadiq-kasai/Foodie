@@ -90,8 +90,11 @@ h1{
         color:var(--grey-300);
     }
 }
-&__icon{
+&__google-btn{
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+
 }
 &__salad-img{
   position:absolute;
@@ -101,9 +104,9 @@ h1{
 }
 &__lemons-img{
   position:absolute;
-  bottom:-75px;
+  bottom:-45px;
   left: -45px;
-  width: 35%;
+  width: 30%;
 }
  
   // animation for floating

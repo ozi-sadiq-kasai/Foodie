@@ -5,15 +5,17 @@ import { PiBowlFoodThin } from 'react-icons/pi';
 import { GoUnlock } from 'react-icons/go';
 import styles from './Register.module.scss';
 import { useState } from 'react';
-import lemons from '../../assets/lemons.png'
-import salad from '../../assets/salad.png'
+import lemons from '../../assets/lemons.png';
+import salad from '../../assets/salad.png';
+// import axios from 'axios'
+import '../../index.scss';
 
 const Register = () => {
-  const [focus, setFocus] = useState({
-    username: false,
-    email: false,
-    password: false,
-  });
+  const googleSubmit = (e) => {
+    console.log('googleSubmit triggered');
+    e.preventDefault();
+    window.location.href = `${import.meta.env.REACT_APP_SERVER_URL}/auth/google`;
+  };
 
   const items = [
     'Manage your recipes the easy way',
@@ -23,6 +25,11 @@ const Register = () => {
     'Invite your friends to join and start sharing your recipes',
   ];
 
+  const [focus, setFocus] = useState({
+    username: false,
+    email: false,
+    password: false,
+  });
   const handleFocus = (field) => {
     setFocus((prevFocus) => ({
       ...prevFocus,
@@ -41,8 +48,14 @@ const Register = () => {
 
   return (
     <div className={styles.wrapper}>
-        <h1>f<span>oo</span>die</h1>
-        <img src={salad} alt="salad bowl" className={styles['wrapper__salad-img']}/>
+      <h1>
+        f<span>oo</span>die
+      </h1>
+      <img
+        src={salad}
+        alt='salad bowl'
+        className={styles['wrapper__salad-img']}
+      />
       <div className={styles['wrapper__form-div']}>
         <form action='#' className={styles['wrapper__form']}>
           <div className={styles['wrapper__input-box']}>
@@ -129,13 +142,15 @@ const Register = () => {
           </p>
           <button className='btn'>Create Account</button>
           <div className={styles['wrapper__google']}>
-          <span>Join with</span>
-        </div>
-        <a>
-          <FcGoogle size={24} className={styles['wrapper__icon']} />
-        </a>
+            <span>Join with</span>
+          </div>
+        
+          <button
+            onClick={googleSubmit}
+            className={styles['wrapper__google-btn']}>
+            <FcGoogle size={24} className='icon' /> 
+          </button>
         </form>
-       
       </div>
       <div className={styles['wrapper__create']}>
         <h2>Create Account</h2>
@@ -148,7 +163,11 @@ const Register = () => {
           </ul>
         ))}
       </div>
-      <img src={lemons } alt="lemons" className={styles['wrapper__lemons-img']} />
+      <img
+        src={lemons}
+        alt='lemons'
+        className={styles['wrapper__lemons-img']}
+      />
     </div>
   );
 };
