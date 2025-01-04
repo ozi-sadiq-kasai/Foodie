@@ -3,10 +3,10 @@ import {register,login,logout} from '../controllers/localAuthController.js';
 
 const router = express.Router();
 
-router.post('/register', register);
+router.post('/auth/register', register);
 
-router.post('/login', login);
+router.post('/auth/login', login);
 
-router.get('/logout', logout);  
+router.get('/auth/logout', logout);  
 
 export default router;

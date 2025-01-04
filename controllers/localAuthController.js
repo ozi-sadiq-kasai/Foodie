@@ -3,9 +3,11 @@ import { hashPassword, comparePassword } from '../utils/passwordHashing.js';
 
 export const register = async (req, res) => {
   try {
-    const hashedPassword = await hashPassword(req.body.password);
+    const {username,email,password} = req.body
+    const hashedPassword = await hashPassword(password);
     const user = await LocalAuth.create({
-      ...req.body,
+      name: username,
+      email,
       password: hashedPassword,
     });
     res.status(201).json({

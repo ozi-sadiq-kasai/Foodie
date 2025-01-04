@@ -7,24 +7,15 @@ import styles from './Register.module.scss';
 import { useState } from 'react';
 import lemons from '../../assets/lemons.png';
 import salad from '../../assets/salad.png';
-// import axios from 'axios'
+import axios from 'axios';
 import '../../index.scss';
+import {useNavigate} from 'react-router-dom';
 
 const Register = () => {
-  const googleSubmit = (e) => {
-    console.log('googleSubmit triggered');
-    e.preventDefault();
-    window.location.href = `${import.meta.env.REACT_APP_SERVER_URL}/auth/google`;
-  };
-
-  const items = [
-    'Manage your recipes the easy way',
-    'More than 15,000 recipes from around the world',
-    'Share recipes with your friends and discover new ones',
-    'Organize recipes by tag, share it with your friends',
-    'Invite your friends to join and start sharing your recipes',
-  ];
-
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [focus, setFocus] = useState({
     username: false,
     email: false,
@@ -46,6 +37,43 @@ const Register = () => {
     }
   };
 
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_SERVER_URL}/auth/register`,
+        {
+          username,
+          email,
+          password,
+        }
+      );
+      console.log('Registration successfull:', response.data);
+      navigate('/');
+    } catch (error) {
+      console.log('Registration failed:', error);
+    }
+  };
+
+  const googleSubmit = (e) => {
+    console.log('googleSubmit triggered');
+    e.preventDefault();
+    window.location.href = `${
+      import.meta.env.VITE_REACT_APP_SERVER_URL
+    }/auth/google`;
+  };
+
+  const items = [
+    'Manage your recipes the easy way',
+    'More than 15,000 recipes from around the world',
+    'Share recipes with your friends and discover new ones',
+    'Organize recipes by tag, share it with your friends',
+    'Invite your friends to join and start sharing your recipes',
+  ];
+
+
+
   return (
     <div className={styles.wrapper}>
       <h1>
@@ -57,7 +85,7 @@ const Register = () => {
         className={styles['wrapper__salad-img']}
       />
       <div className={styles['wrapper__form-div']}>
-        <form action='#' className={styles['wrapper__form']}>
+        <form onClick={handleSubmit} className={styles['wrapper__form']}>
           <div className={styles['wrapper__input-box']}>
             <label
               htmlFor='username'
@@ -74,6 +102,7 @@ const Register = () => {
               required
               onFocus={() => handleFocus('username')}
               onBlur={(e) => handleBlur('username', e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <span
               className={
@@ -100,6 +129,7 @@ const Register = () => {
               required
               onFocus={() => handleFocus('email')}
               onBlur={(e) => handleBlur('email', e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <span
               className={
@@ -126,6 +156,7 @@ const Register = () => {
               required
               onFocus={() => handleFocus('password')}
               onBlur={(e) => handleBlur('password', e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span
               className={
@@ -140,15 +171,17 @@ const Register = () => {
             By clicking on &apos;Create Account&apos; you are agreeing to the{' '}
             <span> Terms of Service </span>and the<span> Privacy Policy </span>
           </p>
-          <button className='btn'>Create Account</button>
+          <button className='btn' type='submit'>
+            Create Account
+          </button>
           <div className={styles['wrapper__google']}>
             <span>Join with</span>
           </div>
-        
+
           <button
             onClick={googleSubmit}
             className={styles['wrapper__google-btn']}>
-            <FcGoogle size={24} className='icon' /> 
+            <FcGoogle size={24} className='icon' />
           </button>
         </form>
       </div>

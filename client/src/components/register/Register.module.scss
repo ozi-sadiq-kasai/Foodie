@@ -2,11 +2,11 @@
   padding: 0 !important;
   overflow: hidden;
 }
-h1{
+h1 {
   position: absolute;
   top: 10px;
   left: 10px;
-  span{
+  span {
     color: var(--highlight);
   }
 }
@@ -23,18 +23,16 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
   }
-  &__form{
+  &__form {
     background-color: var(--white);
-    height: 65%;
+    min-height: 65%;
     width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2rem 0;
-   
   }
   &__input-box {
     display: flex;
@@ -42,7 +40,7 @@ h1{
     width: 85%;
     margin-bottom: 2rem;
     position: relative;
-    
+
     label {
       position: absolute;
       top: 50%;
@@ -61,82 +59,78 @@ h1{
       background: none;
       font-size: 1rem;
     }
-   
   }
-  &__terms{
+  &__terms {
     width: 55%;
-      margin: 10px auto;
-      text-align: center;
-      font-size: 13px;
-      span{
-          color:black;
-          font-weight: bold;
-      } 
+    margin: 10px auto;
+    text-align: center;
+    font-size: 13px;
+    span {
+      color: black;
+      font-weight: bold;
+    }
   }
-  &__google{
+  &__google {
     width: 100%;
     display: flex;
     align-items: center;
     position: relative;
     &::before,
-    &::after{
-      content: ''; 
-      flex: 1; 
+    &::after {
+      content: '';
+      flex: 1;
       border-bottom: 1px solid var(--grey-300);
-      margin: 10px 25px; 
+      margin: 10px 25px;
     }
-    span{
-        font-size: 14px;
-        color:var(--grey-300);
+    span {
+      font-size: 14px;
+      color: var(--grey-300);
     }
-}
-&__google-btn{
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+  }
+  &__google-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+  &__salad-img {
+    position: absolute;
+    top: -2px;
+    right: -45px;
+    width: 29%;
+  }
+  &__lemons-img {
+    position: absolute;
+    bottom: -45px;
+    left: -45px;
+    width: 30%;
+  }
 
-}
-&__salad-img{
-  position:absolute;
-  top:-2px;
-  right: -45px;
-  width: 29%;
-}
-&__lemons-img{
-  position:absolute;
-  bottom:-45px;
-  left: -45px;
-  width: 30%;
-}
- 
   // animation for floating
   .focused {
     top: -7px;
     left: 10px;
     font-size: 0.8rem;
     color: var(--highlight); /* Color for focused label */
-    span{
+    span {
       color: var(--highlight);
     }
   }
- 
 
   &__create {
     flex: 1;
     display: flex;
     flex-direction: column;
     // align-items: start;
-    
-    h2{
+
+    h2 {
       margin-bottom: -10px;
       font-weight: 900;
     }
-    p{
+    p {
       font-weight: 900;
     }
-    li{
+    li {
       margin-bottom: 12px;
     }
   }
-
 }

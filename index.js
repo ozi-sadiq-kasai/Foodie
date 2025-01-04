@@ -21,13 +21,13 @@ app.use(
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
       httpOnly: true,
-    }, // Helps mitigate XSS
+    }, 
   })
 );
 // Enable CORS for requests from frontend
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
