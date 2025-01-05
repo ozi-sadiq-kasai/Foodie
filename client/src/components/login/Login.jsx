@@ -1,13 +1,18 @@
 import styles from './Login.module.scss';
-import { GoPerson } from 'react-icons/go';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { FcGoogle } from 'react-icons/fc';
 import { GoUnlock } from 'react-icons/go';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import lemons from '../../assets/lemons.png';
 import salad from '../../assets/salad.png';
+import axios from 'axios'
 
 const Login = () => {
+  const navigate = useNavigate()
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [focus, setFocus] = useState({
     username: false,
     email: false,
@@ -28,6 +33,22 @@ const Login = () => {
       }));
     }
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_SERVER_URL}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+      console.log('Login successfull:', response.data);
+      navigate('/');
+    } catch (error) {
+      console.log('Registration failed:', error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -40,33 +61,7 @@ const Login = () => {
         className={styles['wrapper__salad-img']}
       />
       <p className={styles['wrapper__recipes']}>More than <span>15,000 recipes</span>from around the world!</p>
-        <form action='#' className={styles['wrapper__form']}>
-          <div className={styles['wrapper__input-box']}>
-            <label
-              htmlFor='username'
-              className={
-                focus.username || document.getElementById('username')?.value
-                  ? styles['focused']
-                  : ''
-              }>
-              Username
-            </label>
-            <input
-              type='text'
-              id='username'
-              required
-              onFocus={() => handleFocus('username')}
-              onBlur={(e) => handleBlur('username', e.target.value)}
-            />
-            <span
-              className={
-                focus.username || document.getElementById('username')?.value
-                  ? styles['focused']
-                  : ''
-              }>
-              <GoPerson />
-            </span>
-          </div>
+        <form onSubmit={handleSubmit} className={styles['wrapper__form']}>
           <div className={styles['wrapper__input-box']}>
             <label
               htmlFor='email'
@@ -83,6 +78,7 @@ const Login = () => {
               required
               onFocus={() => handleFocus('email')}
               onBlur={(e) => handleBlur('email', e.target.value)}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             <span
               className={
@@ -109,6 +105,7 @@ const Login = () => {
               required
               onFocus={() => handleFocus('password')}
               onBlur={(e) => handleBlur('password', e.target.value)}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <span
               className={

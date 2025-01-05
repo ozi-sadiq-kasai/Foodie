@@ -1,0 +1,42 @@
+.wrapper{
+  &__nav{
+   ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+ }
+  }
+  &__logo{
+   flex:2;
+   height:10vh;
+  }
+  &__search-wrapper{
+   flex:2.5;
+}
+&__search-wrapper-div{
+ display: flex;
+ align-items: center;
+ background-color: var(--white);
+ border-radius: 10px;
+ padding: 5px 0;
+ justify-content: space-between;   
+}
+&__search-wrapper-input{
+display: flex;
+align-items: center;  
+input{
+    border: none;
+    outline: none;
+    padding-left: 5px ;
+}
+}
+&__search-wrapper-btn{
+border: none; 
+}
+&__login{
+   flex:1;
+   text-align: end;
+   padding-right: 5px;
+  }
+}
