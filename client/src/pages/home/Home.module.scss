@@ -39,4 +39,16 @@ border: none;
    text-align: end;
    padding-right: 5px;
   }
+&__image{
+   position: absolute;
+   top: 60px;
+   right:-100px;
+   width: 37%;
+}
+
+&__image-breakfast{
+   position: absolute;
+   left: -110px;
+   bottom: -100px;
+}
 }

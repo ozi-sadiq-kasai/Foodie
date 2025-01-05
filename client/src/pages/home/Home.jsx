@@ -1,6 +1,8 @@
 import styles from './Home.module.scss';
 import { CiSearch } from 'react-icons/ci';
 import { useNavigate } from 'react-router-dom'
+import breakfast from '../../assets/breakfast.png'
+import macaroni from '../../assets/macaroni.png'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -31,6 +33,11 @@ const Home = () => {
           </li>
         </ul>
       </nav>
+      <img src={breakfast} alt="breakfast bowl" className={styles['wrapper__image-breakfast']} />
+      <img src={macaroni} alt="macaroni" className={styles['wrapper__image']}/>
+      <h2>Health Requires Healthy Food</h2>
+      <p>Manage your recipes the easy way</p>
+      <p>Share recipes with your friends and discover new ones. More than <span>15,000 recipes</span> from around the world!</p>
     </main>
   );
 };
