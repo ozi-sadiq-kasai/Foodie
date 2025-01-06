@@ -1,0 +1,34 @@
+@import '../../mixins.scss';
+
+.wrapper {
+  // border: 2px solid blue;
+  @include respond-to(tablet) {
+    // background-color: red;
+  }
+  ul {
+    // border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    // padding-bottom: 20px;
+  }
+  li {
+    // border: 1px solid #000;
+    width: 33.333%;
+    height: 150px;
+  }
+
+  &__img {
+    height: 100%;
+    vertical-align: middle;
+  }
+  &__link-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  link{
+    color: var(--highlight);
+  }
+  }
+}

@@ -1,15 +1,24 @@
+@import '../../mixins.scss';
+
 .wrapper {
+  height: 100vh;
   &__nav {
     ul {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+      padding-top: 5px;
     }
   }
   &__logo {
     flex: 2;
     height: 10vh;
+    @include respond-to(tablet) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
   }
   &__search-wrapper {
     flex: 2.5;
@@ -18,8 +27,8 @@
     display: flex;
     align-items: center;
     background-color: var(--white);
-    border-radius: 10px;
-    padding: 5px 0;
+    border-radius: 15px;
+    padding: 3px 0;
     justify-content: space-between;
   }
   &__search-wrapper-input {
@@ -31,34 +40,39 @@
       padding-left: 5px;
     }
   }
-  &__search-wrapper-btn {
+  &__search-btn {
     border: none;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: none;
   }
   &__login {
     flex: 1;
     text-align: end;
-    padding-right: 5px;
+    padding-right: 10px;
+  }
+  &__login-btn{
+    border-radius: 15px;
+    width: 6rem;
   }
   &__image-macaroni {
     position: absolute;
     top: 60px;
     right: -100px;
     width: 37%;
-  }
-
-  &__image-breakfast {
-    position: absolute;
-    left: -110px;
-    bottom: -100px;
+    z-index: 999;
+    @include respond-to(tablet){
+      right: -20px;
+    }
   }
   &__content-div {
-    border: 5px solid #000;
-    height: calc(100vh - 8.5vh);
+    border: 5px solid orangered;
+    height: 100%
   }
   &__content {
-    border: 1px solid red;
+    border: 1px solid green;
     width: 85%;
-    margin: 5rem auto;
+    margin: 3rem auto;
     text-align: center;
     h2 {
       width: 50%;
@@ -81,13 +95,13 @@
     font-size: 12px;
   }
   &__explore-div {
-    border: 1px solid #000;
-    width: 100vw;
-    background-color: red;
     position: relative;
-    top: -150px;
+    top: -270px;
+    left: 17%;
     width: 70%;
-    margin: 0 auto;
-    padding: 10px 30px;
+    overflow: hidden;
+    @include respond-to(tablet){
+      top:-180px
+    }
   }
 }

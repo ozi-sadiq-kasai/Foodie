@@ -1,8 +1,8 @@
 import styles from './Home.module.scss';
 import { CiSearch } from 'react-icons/ci';
 import { useNavigate } from 'react-router-dom';
-import breakfast from '../../assets/breakfast.png';
 import macaroni from '../../assets/macaroni.png';
+import Explore from '../../components/exploreRecipe/Explore'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Home = () => {
                 <input type='text' placeholder='search recipes' />
               </div>
               <button className={`${styles['wrapper__search-btn']} btn`}>
-                Submit
+                Search
               </button>
             </div>
           </li>
@@ -36,11 +36,6 @@ const Home = () => {
           </li>
         </ul>
       </nav>
-      <img
-        src={breakfast}
-        alt='breakfast bowl'
-        className={styles['wrapper__image-breakfast']}
-      />
       <img
         src={macaroni}
         alt='macaroni'
@@ -61,7 +56,7 @@ const Home = () => {
         </div>
       </div>
       <div className={styles['wrapper__explore-div']}>
-        explore
+      <Explore />
       </div>
     </main>
   );
