@@ -1,7 +1,7 @@
-import Register from './components/register/Register'
+import Register from './pages/register/Register'
 import { Routes, Route } from 'react-router-dom'; 
 import Home from './pages/home/Home'
-import Login  from './components/login/Login'
+import Login  from './pages/login/Login'
 
 const App = () => {
   return (

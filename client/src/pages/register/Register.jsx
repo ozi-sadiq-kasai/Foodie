@@ -1,16 +1,19 @@
-import styles from './Login.module.scss';
+import { GoPerson } from 'react-icons/go';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { FcGoogle } from 'react-icons/fc';
+import { PiBowlFoodThin } from 'react-icons/pi';
 import { GoUnlock } from 'react-icons/go';
+import styles from './Register.module.scss';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import lemons from '../../assets/lemons.png';
 import salad from '../../assets/salad.png';
-import axios from 'axios'
+import axios from 'axios';
+import '../../index.scss';
+import {useNavigate,Link} from 'react-router-dom';
 
-const Login = () => {
-  const navigate = useNavigate()
-
+const Register = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [focus, setFocus] = useState({
@@ -33,22 +36,43 @@ const Login = () => {
       }));
     }
   };
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_REACT_APP_SERVER_URL}/auth/login`,
+        `${import.meta.env.VITE_REACT_APP_SERVER_URL}/auth/register`,
         {
+          username,
           email,
           password,
         }
       );
-      console.log('Login successfull:', response.data);
+      console.log('Registration successfull:', response.data);
       navigate('/');
     } catch (error) {
       console.log('Registration failed:', error);
     }
   };
+
+  const googleSubmit = (e) => {
+    console.log('googleSubmit triggered');
+    e.preventDefault();
+    window.location.href = `${
+      import.meta.env.VITE_REACT_APP_SERVER_URL
+    }/auth/google`;
+  };
+
+  const items = [
+    'Manage your recipes the easy way',
+    'More than 15,000 recipes from around the world',
+    'Share recipes with your friends and discover new ones',
+    'Organize recipes by tag, share it with your friends',
+    'Invite your friends to join and start sharing your recipes',
+  ];
+
+
 
   return (
     <div className={styles.wrapper}>
@@ -60,8 +84,36 @@ const Login = () => {
         alt='salad bowl'
         className={styles['wrapper__salad-img']}
       />
-      <p className={styles['wrapper__recipes']}>More than <span>15,000 recipes</span>from around the world!</p>
-        <form onSubmit={handleSubmit} className={styles['wrapper__form']}>
+      <div className={styles['wrapper__form-div']}>
+        <form onClick={handleSubmit} className={styles['wrapper__form']}>
+          <h2>Create Account</h2>
+          <div className={styles['wrapper__input-box']}>
+            <label
+              htmlFor='username'
+              className={
+                focus.username || document.getElementById('username')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              Username
+            </label>
+            <input
+              type='text'
+              id='username'
+              required
+              onFocus={() => handleFocus('username')}
+              onBlur={(e) => handleBlur('username', e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <span
+              className={
+                focus.username || document.getElementById('username')?.value
+                  ? styles['focused']
+                  : ''
+              }>
+              <GoPerson />
+            </span>
+          </div>
           <div className={styles['wrapper__input-box']}>
             <label
               htmlFor='email'
@@ -78,7 +130,7 @@ const Login = () => {
               required
               onFocus={() => handleFocus('email')}
               onBlur={(e) => handleBlur('email', e.target.value)}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <span
               className={
@@ -105,7 +157,7 @@ const Login = () => {
               required
               onFocus={() => handleFocus('password')}
               onBlur={(e) => handleBlur('password', e.target.value)}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span
               className={
@@ -120,14 +172,32 @@ const Login = () => {
             By clicking on &apos;Create Account&apos; you are agreeing to the{' '}
             <span> Terms of Service </span>and the<span> Privacy Policy </span>
           </p>
-          <button className='btn'>Login</button>
+          <button className='btn' type='submit'>
+            Create Account
+          </button>
           <div className={styles['wrapper__google']}>
             <span>Join with</span>
           </div>
-          <a>
-            <FcGoogle size={24} className={styles['wrapper__icon']} />
-          </a>
+
+          <button
+            onClick={googleSubmit}
+            className={styles['wrapper__google-btn']}>
+            <FcGoogle size={24} className='icon' />
+          </button>
+          <p>Already have an Account? <Link to={'/register'}>Login</Link></p>
         </form>
+      </div>
+      <div className={styles['wrapper__create']}>
+        <h2>Create Account</h2>
+        <p>What you will get?</p>
+        {items.map((item) => (
+          <ul key={item}>
+            <li>
+              <PiBowlFoodThin /> {item}
+            </li>
+          </ul>
+        ))}
+      </div>
       <img
         src={lemons}
         alt='lemons'
@@ -137,4 +207,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

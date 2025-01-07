@@ -1,66 +1,13 @@
-@import '../../mixins.scss';
+@use '../../mixins' as *;
 
 .wrapper {
   height: 100vh;
-  &__nav {
-    ul {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding-top: 5px;
-    }
-  }
-  &__logo {
-    flex: 2;
-    height: 10vh;
-    @include respond-to(tablet) {
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  }
-  &__search-wrapper {
-    flex: 2.5;
-  }
-  &__search-wrapper-div {
-    display: flex;
-    align-items: center;
-    background-color: var(--white);
-    border-radius: 15px;
-    padding: 3px 0;
-    justify-content: space-between;
-  }
-  &__search-wrapper-input {
-    display: flex;
-    align-items: center;
-    input {
-      border: none;
-      outline: none;
-      padding-left: 5px;
-    }
-  }
-  &__search-btn {
-    border: none;
-    height: 100%;
-    border-radius: 15px;
-    box-shadow: none;
-  }
-  &__login {
-    flex: 1;
-    text-align: end;
-    padding-right: 10px;
-  }
-  &__login-btn{
-    border-radius: 15px;
-    width: 6rem;
-  }
   &__image-macaroni {
     position: absolute;
     top: 60px;
     right: -100px;
     width: 37%;
-    z-index: 999;
+    // z-index: 999;
     @include respond-to(tablet){
       right: -20px;
     }

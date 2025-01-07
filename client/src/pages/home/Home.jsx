@@ -1,41 +1,13 @@
 import styles from './Home.module.scss';
-import { CiSearch } from 'react-icons/ci';
-import { useNavigate } from 'react-router-dom';
 import macaroni from '../../assets/macaroni.png';
 import Explore from '../../components/exploreRecipe/Explore'
+import Navbar from '../../components/navbar/Navbar';
 
 const Home = () => {
-  const navigate = useNavigate();
 
   return (
     <main className={styles.wrapper}>
-      <nav className={styles['wrapper__nav']}>
-        <ul>
-          <li className={styles['wrapper__logo']}>
-            <h1>
-              F<span>OO</span>DIE
-            </h1>
-          </li>
-          <li className={styles['wrapper__search-wrapper']}>
-            <div className={styles['wrapper__search-wrapper-div']}>
-              <div className={styles['wrapper__search-wrapper-input']}>
-                <CiSearch />
-                <input type='text' placeholder='search recipes' />
-              </div>
-              <button className={`${styles['wrapper__search-btn']} btn`}>
-                Search
-              </button>
-            </div>
-          </li>
-          <li className={styles['wrapper__login']}>
-            <button
-              className={`${styles['wrapper__login-btn']} btn`}
-              onClick={() => navigate('/Login')}>
-              login
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
       <img
         src={macaroni}
         alt='macaroni'
