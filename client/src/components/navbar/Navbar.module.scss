@@ -10,10 +10,21 @@
   &__logo {
     flex: 2;
     height: 10vh;
+    h1 {
+      // font-size: 2rem;
+      span {
+        color: var(--highlight);
+      }
+    }
+    
     @include respond-to(tablet) {
       h1 {
         font-size: 2rem;
+        span {
+          color: var(--highlight);
+        }
       }
+      
     }
   }
   &__search-wrapper {

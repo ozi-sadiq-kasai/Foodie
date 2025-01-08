@@ -1,21 +1,19 @@
-:global(body) {
-  padding: 0 !important;
-  overflow: hidden;
-}
-h1 {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  span {
-    color: var(--highlight);
-  }
-}
+
+
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  h1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    span {
+      color: var(--highlight);
+    }
+  }
   &__form {
     background-color: var(--white);
     height: 80%;

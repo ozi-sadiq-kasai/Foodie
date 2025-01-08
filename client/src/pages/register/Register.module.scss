@@ -2,19 +2,20 @@
   padding: 0 !important;
   overflow: hidden;
 }
-h1 {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  span {
-    color: var(--highlight);
-  }
-}
+
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  h1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    span {
+      color: var(--highlight);
+    }
+  }
 
   &__form-div {
     flex: 1.5;

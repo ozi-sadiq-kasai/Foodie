@@ -9,7 +9,7 @@ import lemons from '../../assets/lemons.png';
 import salad from '../../assets/salad.png';
 import axios from 'axios';
 import '../../index.scss';
-import {useNavigate,Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -37,7 +37,6 @@ const Register = () => {
     }
   };
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -71,9 +70,7 @@ const Register = () => {
     'Organize recipes by tag, share it with your friends',
     'Invite your friends to join and start sharing your recipes',
   ];
-
-
-
+ 
   return (
     <div className={styles.wrapper}>
       <h1>
@@ -184,7 +181,9 @@ const Register = () => {
             className={styles['wrapper__google-btn']}>
             <FcGoogle size={24} className='icon' />
           </button>
-          <p>Already have an Account? <Link to={'/register'}>Login</Link></p>
+          <p>
+            Already have an Account? <Link to={'/register'}>Login</Link>
+          </p>
         </form>
       </div>
       <div className={styles['wrapper__create']}>

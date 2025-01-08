@@ -1,5 +1,6 @@
 @use '../../mixins' as *;
 
+
 .wrapper {
   height: 100vh;
   &__image-macaroni {
@@ -7,17 +8,19 @@
     top: 60px;
     right: -100px;
     width: 37%;
-    // z-index: 999;
     @include respond-to(tablet){
       right: -20px;
     }
   }
+  h1 {
+    span {
+      color: var(--highlight);
+    }
+  }
   &__content-div {
-    border: 5px solid orangered;
     height: 100%
   }
   &__content {
-    border: 1px solid green;
     width: 85%;
     margin: 3rem auto;
     text-align: center;

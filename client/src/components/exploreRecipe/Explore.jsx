@@ -11,22 +11,22 @@ const Explore = () => {
     <div className={styles.wrapper}>
       <ul>
         <li >
-          <img src={frenchBread} alt="" className={`${styles['wrapper__img']} img`}/>
+          <img src={frenchBread} alt="" loading="lazy" className={`${styles['wrapper__img']} img`}/>
         </li>
         <li>
-          <img src={rice} alt="" className={`${styles['wrapper__img']} img`}/>
+          <img src={rice} alt="" loading="lazy"  className={`${styles['wrapper__img']} img`}/>
         </li>
         <li>
-          <img src={spaghetti} alt="" className={`${styles['wrapper__img']} img`}/>
+          <img src={spaghetti} alt="" loading="lazy" className={`${styles['wrapper__img']} img`}/>
         </li>
         <li>
-          <img src={soup} alt="" className={`${styles['wrapper__img']} img`}/>
+          <img src={soup} alt="" loading="lazy" className={`${styles['wrapper__img']} img`}/>
         </li>
         <li>
-          <img src={chicken} alt="" className={`${styles['wrapper__img']} img`}/>
+          <img src={chicken} alt="" loading="lazy" className={`${styles['wrapper__img']} img`}/>
         </li>
         <li className={styles['wrapper__link-li']}>
-        <Link to="/register"className={styles['wrapper__link']}>explore recipes</Link>
+        <Link to="/explore"className={styles['wrapper__link']}>explore recipes</Link>
         </li>
       </ul>
     </div>
