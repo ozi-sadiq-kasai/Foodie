@@ -1,9 +1,7 @@
-:global(body) {
-  padding: 2rem 2.5rem !important;
-  overflow: scroll;
-}
 .wrapper {
   border: 2px solid red;
-
-
+  padding: 1rem 3rem;
+  height: 100vh; /* or any desired height */
+ 
+  overflow: scroll;  
 }

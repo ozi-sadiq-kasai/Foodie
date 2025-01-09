@@ -6,9 +6,11 @@
         margin: 1rem 0;
 
         li{
-                border: 1px solid #000;
                 padding: 0.1rem 1rem;
                 border-radius: 25px;
                 background-color: var(--white);
+        }
+        &__Link{
+                color:var(--highlight)
         }
 }
