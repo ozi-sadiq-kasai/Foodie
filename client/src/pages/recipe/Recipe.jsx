@@ -4,11 +4,14 @@ import { fetchRandomMeals } from '../../components/fetchAllRecipes.js';
 import styles from './Recipe.module.scss';
 import Navbar from '../../components/navbar/Navbar.jsx';
 import SmallNav from '../../components/smallNav/SmallNav.jsx';
+import Modal from '../../components/modal/Modal.jsx';
 
 const Recipe = () => {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [selectedMeal, setSelectedMeal] = useState(null)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -30,6 +33,18 @@ const Recipe = () => {
     fetchMeals();
   }, []);
 
+
+  const handleDetailsClick = (meal) => {
+    setSelectedMeal(meal); // Set the selected meal to display in the modal
+    setShowModal(true);
+    console.log(meal)
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);  // Close the modal
+    setSelectedMeal(null); // Reset selected meal
+  };
+
   if (loading) return <p>Loading meals...</p>; // Show loading state
   if (error) return <p>Error: {error}</p>; // Show error state
 
@@ -38,24 +53,22 @@ const Recipe = () => {
       <Navbar />
       <SmallNav />
       <button>Refresh</button>
-      {meals.map((meal) => (
-        <div key={meal.idMeal} className={styles['wrapper__content']}>
-          <img src={meal.image} alt={meal.header} style={{ width: '100px' }} />
-          <h3>{meal.header}</h3>
-          <p>{meal.instructions}</p>
-          <ul>
-            {meal.measures.map((measure, index) => (
-              <li key={index}>{measure}</li>
-            ))}
-          </ul>
-          <ul>
-            {meal.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
+      <div className={styles['wrapper__content']}>
+      
+        {meals.map((meal) => (
+          <div key={meal.idMeal} className={styles['wrapper__card']}>
+            <div className={styles['wrapper__header']}>
+              <img src={meal.image} alt={meal.header} className={`${styles['wrapper__image']} img`}/>
+              <h3>{meal.header}</h3>
+            </div>
           <Link to={meal.youtube} target="_blank">Watch on Youtube</Link>
-        </div>
-      ))}
+          <button onClick={() => handleDetailsClick(meal)}>Details</button> {/* Show the modal when clicked */}
+          </div>
+        ))}
+      </div>
+      {showModal  && (
+        <Modal meal={selectedMeal} onClose={handleCloseModal}/>
+      )}
     </div>
   );
 };
