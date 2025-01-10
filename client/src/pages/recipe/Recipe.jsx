@@ -5,43 +5,45 @@ import styles from './Recipe.module.scss';
 import Navbar from '../../components/navbar/Navbar.jsx';
 import SmallNav from '../../components/smallNav/SmallNav.jsx';
 import Modal from '../../components/modal/Modal.jsx';
+import { ImYoutube2 } from 'react-icons/im';
+import { HiOutlineRefresh } from "react-icons/hi";
 
 const Recipe = () => {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const [selectedMeal, setSelectedMeal] = useState(null)
-  const [showModal, setShowModal] = useState(false)
+  const [selectedMeal, setSelectedMeal] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const fetchMeals = async () => {
+    try {
+      setLoading(true); // Start loading
+      const fetchedMeals = await fetchRandomMeals(10); // Fetch 10 random meals
+      if (!fetchedMeals || fetchedMeals.length === 0) {
+        throw new Error('No meals fetched'); // Handle empty response
+      }
+      setMeals(fetchedMeals); // Update meals state
+      setError(''); // Clear any previous errors
+    } catch (error) {
+      setError(error.message); // Update error state
+      console.error('Error fetching meals:', error.message);
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
 
   useEffect(() => {
-    const fetchMeals = async () => {
-      try {
-        setLoading(true); // Start loading
-        const fetchedMeals = await fetchRandomMeals(10); // Await the async function
-        if (!fetchedMeals || fetchedMeals.length === 0) {
-          throw new Error('No meals fetched');
-        }
-        setMeals(fetchedMeals); // Set the meals state
-      } catch (error) {
-        setError(error.message); // Set the error message
-        console.error('Error fetching meals:', error.message);
-      } finally {
-        setLoading(false); // Stop loading
-      }
-    };
-
     fetchMeals();
   }, []);
-
-
+  
   const handleDetailsClick = (meal) => {
     setSelectedMeal(meal); // Set the selected meal to display in the modal
     setShowModal(true);
-    console.log(meal)
+    console.log(meal);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);  // Close the modal
+    setShowModal(false); // Close the modal
     setSelectedMeal(null); // Reset selected meal
   };
 
@@ -49,26 +51,35 @@ const Recipe = () => {
   if (error) return <p>Error: {error}</p>; // Show error state
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.recipe}>
       <Navbar />
       <SmallNav />
-      <button>Refresh</button>
-      <div className={styles['wrapper__content']}>
-      
+      <button onClick={() => fetchMeals()} className={`${styles.button} btn`}><HiOutlineRefresh/></button>
+      <div className={styles.content}>
         {meals.map((meal) => (
-          <div key={meal.idMeal} className={styles['wrapper__card']}>
-            <div className={styles['wrapper__header']}>
-              <img src={meal.image} alt={meal.header} className={`${styles['wrapper__image']} img`}/>
+          <div key={meal.idMeal} className={styles.card}>
+            <div className={styles.imageHeader}>
+              <img
+                src={meal.image}
+                alt={meal.eader}
+                className={`${styles.image} img`}
+              />
               <h3>{meal.header}</h3>
             </div>
-          <Link to={meal.youtube} target="_blank">Watch on Youtube</Link>
-          <button onClick={() => handleDetailsClick(meal)}>Details</button> {/* Show the modal when clicked */}
+            <div className={styles.links}>
+              <Link to={meal.youtube} target='_blank'>
+                <ImYoutube2 color='red' size='48px' />
+              </Link>
+              <button
+                onClick={() => handleDetailsClick(meal)}
+                className={`${styles.button} btn`}>
+                Details
+              </button>
+            </div>
           </div>
         ))}
       </div>
-      {showModal  && (
-        <Modal meal={selectedMeal} onClose={handleCloseModal}/>
-      )}
+      {showModal && <Modal meal={selectedMeal} onClose={handleCloseModal} />}
     </div>
   );
 };

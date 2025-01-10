@@ -10,17 +10,13 @@ const Modal = ({ meal, onClose }) => {
         <button onClick={onClose} className={styles.closebutton}>
           X
         </button>
-
-        {/* Meal Header */}
-        <h2>{meal.header}</h2>
-
         {/* Meal Image */}
         <img src={meal.image} alt={meal.header} className={styles.modalImage} />
-
+        {/* Meal Header */}
+        <h2>{meal.header}</h2>
         {/* Ingredients */}
         <h3>Ingredients:</h3>
-        <div style={{border:'1px solid red',display:'flex'}}>
-
+        <div className={styles.ingredients}>
           <ul>
             {meal.ingredients?.map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
@@ -36,8 +32,6 @@ const Modal = ({ meal, onClose }) => {
         {/* Instructions */}
         <h3>Instructions:</h3>
         <p>{meal.instructions}</p>
-        {/* Another button for additional actions */}
-        <button className={styles['wrapper__button']}>Another Action</button>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const Explore = () => {
           <img src={chicken} alt="" loading="lazy" className={`${styles['wrapper__img']} img`}/>
         </li>
         <li className={styles['wrapper__link-li']}>
-        <Link to="/explore"className={styles['wrapper__link']}>explore recipes</Link>
+        <Link to="/recipes"className={styles['wrapper__link']}>explore recipes</Link>
         </li>
       </ul>
     </div>

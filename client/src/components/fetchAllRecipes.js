@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const fetchRandomMeals = async (count) => {
   try {
@@ -21,12 +21,13 @@ export const fetchRandomMeals = async (count) => {
     const mealsWithExtractedData = uniqueMeals.map((meal) => {
       // Extract strMeasure properties that are not null or empty
       const measures = Object.keys(meal)
-        .filter(key => key.startsWith('strMeasure') && meal[key]?.trim())
-        .map(key => meal[key]);
+        .filter((key) => key.startsWith('strMeasure') && meal[key]?.trim())
+        .map((key) => meal[key]);
 
       // Include the instructions if available
-      const instructions = meal.strInstructions?.trim() || "No instructions available.";
-      const image = meal.strMealThumb || "No image available.";
+      const instructions =
+        meal.strInstructions?.trim() || 'No instructions available.';
+      const image = meal.strMealThumb || 'No image available.';
 
       return {
         idMeal: meal.idMeal,
@@ -36,8 +37,8 @@ export const fetchRandomMeals = async (count) => {
         header: meal.strMeal,
         youtube: meal.strYoutube,
         ingredients: Object.keys(meal)
-          .filter(key => key.startsWith('strIngredient') && meal[key]?.trim())
-          .map(key => meal[key]),
+          .filter((key) => key.startsWith('strIngredient') && meal[key]?.trim())
+          .map((key) => meal[key]),
       };
     });
 
@@ -47,3 +48,17 @@ export const fetchRandomMeals = async (count) => {
     throw new Error('Failed to fetch meals. Please try again later.');
   }
 };
+
+export const fetchBreakfastMeals = async () => {
+  try {
+    const response = await axios.get(
+      'https://www.themealdb.com/api/json/v1/1/search.php?s=Breakfast'
+    );
+    const fetchedBreakfast = response.data.meals
+    console.log('from js',fetchedBreakfast)
+    return fetchedBreakfast
+  } catch (err) {
+    console.error('Error fetching meals:', err.message);
+    throw new Error('Failed to fetch meals. Please try again later.');
+  }
+}

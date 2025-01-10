@@ -5,19 +5,19 @@ const SmallNav = () => {
   return (
 <ul className={styles.wrapper}>
     <li>
-     <Link className={styles['wrapper__Link']} to='#'>APPETISERS</Link>
+     <Link className={styles['wrapper__Link']} to='/appetisers'>APPETISERS</Link>
     </li>
     <li>
      <Link className={styles['wrapper__Link']} to='/starters'>STARTERS</Link>
     </li>
     <li>
-     <Link className={styles['wrapper__Link']} to='#'>MAIN COURSES</Link>
+     <Link className={styles['wrapper__Link']} to='/main'>MAIN COURSES</Link>
     </li>
     <li>
-     <Link className={styles['wrapper__Link']} to='#'>SIDE DISHES</Link>
+     <Link className={styles['wrapper__Link']} to='/side'>SIDE DISHES</Link>
     </li>
     <li>
-     <Link className={styles['wrapper__Link']} to='#'>DESSERTS</Link>
+     <Link className={styles['wrapper__Link']} to='/dessert'>DESSERTS</Link>
     </li>
   </ul>
   )

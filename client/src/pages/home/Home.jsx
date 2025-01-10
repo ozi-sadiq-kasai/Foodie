@@ -2,7 +2,6 @@ import styles from './Home.module.scss';
 import macaroni from '../../assets/macaroni.png';
 import Explore from '../../components/exploreRecipe/Explore';
 import Navbar from '../../components/navbar/Navbar';
-// import { useState, useEffect } from 'react';
 
 const Home = () => {
 
