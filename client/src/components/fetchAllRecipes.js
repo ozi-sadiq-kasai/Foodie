@@ -56,7 +56,27 @@ export const fetchBreakfastMeals = async () => {
     );
     const fetchedBreakfast = response.data.meals
     console.log('from js',fetchedBreakfast)
-    return fetchedBreakfast
+    const mealsWithExtractedData = fetchedBreakfast.map((meal)=>{
+      const measures = Object.keys(meal)
+      .filter((key)=>key.startsWith('strMeasure') && meal[key]?.trim())
+      .map((key) => meal[key]);
+      const instructions =
+      meal.strInstructions?.trim() || 'No instructions available.';
+    const image = meal.strMealThumb || 'No image available.';
+    return {
+      idMeal: meal.idMeal,
+      measures,
+      instructions,
+      image,
+      header: meal.strMeal,
+      youtube: meal.strYoutube,
+      ingredients: Object.keys(meal)
+        .filter((key) => key.startsWith('strIngredient') && meal[key]?.trim())
+        .map((key) => meal[key]),
+    };
+
+    })
+    return mealsWithExtractedData
   } catch (err) {
     console.error('Error fetching meals:', err.message);
     throw new Error('Failed to fetch meals. Please try again later.');

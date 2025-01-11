@@ -61,7 +61,7 @@ const Recipe = () => {
             <div className={styles.imageHeader}>
               <img
                 src={meal.image}
-                alt={meal.eader}
+                alt={meal.header}
                 className={`${styles.image} img`}
               />
               <h3>{meal.header}</h3>
