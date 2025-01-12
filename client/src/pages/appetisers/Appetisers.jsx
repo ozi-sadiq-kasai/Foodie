@@ -1,4 +1,4 @@
-import { fetchBreakfastMeals } from '../../components/fetchAllRecipes';
+import { fetchRecipes } from '../../components/fetchAllRecipes';
 import { useState, useEffect } from 'react';
 import styles from './../recipe/Recipe.module.scss';
 import Navbar from '../../components/navbar/Navbar.jsx';
@@ -18,7 +18,7 @@ const Appetisers = () => {
     const fetchMeals = async () => {
       try {
         setLoading(true); // Start loading
-        const fetchedBreakfast = await fetchBreakfastMeals();
+        const fetchedBreakfast = await fetchRecipes('https://www.themealdb.com/api/json/v1/1/search.php?s=Breakfast');
 
         if (!fetchedBreakfast || fetchedBreakfast.length === 0) {
           throw new Error('No meals fetched');

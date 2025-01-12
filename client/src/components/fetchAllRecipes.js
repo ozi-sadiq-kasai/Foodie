@@ -49,10 +49,11 @@ export const fetchRandomMeals = async (count) => {
   }
 };
 
-export const fetchBreakfastMeals = async () => {
+export const fetchRecipes = async (i) => {
   try {
     const response = await axios.get(
-      'https://www.themealdb.com/api/json/v1/1/search.php?s=Breakfast'
+      i
+      // 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Side'
     );
     const fetchedBreakfast = response.data.meals
     console.log('from js',fetchedBreakfast)
