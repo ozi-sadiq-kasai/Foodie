@@ -3,11 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home'
 import Login  from './pages/login/Login'
 import Recipe  from './pages/recipe/Recipe'
-import Starters from './pages/starters/Starters';
-import Appetisers from './pages/appetisers/Appetisers';
+import Chicken from './pages/chicken/Chicken';
+import Breakfast from './pages/breakfast/Breakfast';
 import Dessert from './pages/dessert/Dessert';
-import Main from './pages/main/Main';
-import Side from './pages/side/Side';
+import Beef from './pages/beef/Beef';
+import Vegetarian from './pages/vegetarian/Vegetarian';
 
 const App = () => {
   return (
@@ -16,11 +16,11 @@ const App = () => {
      <Route path="/register" element={<Register />} />
      <Route path="/login" element={<Login />} />
      <Route path="/recipes" element={<Recipe />} />
-     <Route path="/starters" element={<Starters />} />
-     <Route path="/main" element={<Main />} />
-     <Route path="/side" element={<Side />} />
+     <Route path="/chicken" element={<Chicken />} />
+     <Route path="/vegetarian" element={<Vegetarian />} />
+     <Route path="/beef" element={<Beef />} />
      <Route path="/dessert" element={<Dessert />} />
-     <Route path="/appetisers" element={<Appetisers />} />
+     <Route path="/breakfast" element={<Breakfast />} />
     </Routes>
   )
 }

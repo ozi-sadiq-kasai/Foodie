@@ -1,4 +1,4 @@
-import { fetchRecipes } from '../../components/fetchAllRecipes';
+import { fetchRecipes } from '../../components/fetchAllRecipes.js';
 import { useState, useEffect } from 'react';
 import styles from './../recipe/Recipe.module.scss';
 import Navbar from '../../components/navbar/Navbar.jsx';
@@ -8,7 +8,7 @@ import { ImYoutube2 } from 'react-icons/im';
 import { Link } from 'react-router-dom';
 
 
-const Dessert = () => {
+const Vegetarian = () => {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -19,12 +19,12 @@ const Dessert = () => {
     const fetchMeals = async () => {
       try {
         setLoading(true); // Start loading
-        const fetchedBreakfast = await fetchRecipes('https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert');
+        const fetchedBreakfast = await fetchRecipes('https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian');
 
         if (!fetchedBreakfast || fetchedBreakfast.length === 0) {
           throw new Error('No meals fetched');
         }
-console.log('from meals',meals)
+
         setMeals(fetchedBreakfast.slice(0, 10)); // Set first 10 meals
       } catch (error) {
         setError(error.message); // Update error state
@@ -57,7 +57,7 @@ console.log('from meals',meals)
     <div className={styles.recipe}>
    <Navbar />
    <SmallNav />
-   <h2>Dessert</h2>
+   <h2>Vegetarian</h2>
    <div className={styles.content}>
         {meals.map((meal) => (
           <div key={meal.idMeal} className={styles.card}>
@@ -87,4 +87,4 @@ console.log('from meals',meals)
   )
 }
 
-export default Dessert
+export default Vegetarian
