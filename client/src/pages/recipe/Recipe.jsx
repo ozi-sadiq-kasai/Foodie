@@ -6,7 +6,8 @@ import Navbar from '../../components/navbar/Navbar.jsx';
 import SmallNav from '../../components/smallNav/SmallNav.jsx';
 import Modal from '../../components/modal/Modal.jsx';
 import { ImYoutube2 } from 'react-icons/im';
-import { HiOutlineRefresh } from "react-icons/hi";
+import { HiOutlineRefresh } from 'react-icons/hi';
+import { CiHeart } from 'react-icons/ci';
 
 const Recipe = () => {
   const [meals, setMeals] = useState([]);
@@ -35,7 +36,7 @@ const Recipe = () => {
   useEffect(() => {
     fetchMeals();
   }, []);
-  
+
   const handleDetailsClick = (meal) => {
     setSelectedMeal(meal); // Set the selected meal to display in the modal
     setShowModal(true);
@@ -54,7 +55,9 @@ const Recipe = () => {
     <div className={styles.recipe}>
       <Navbar />
       <SmallNav />
-      <button onClick={() => fetchMeals()} className={`${styles.button} btn`}><HiOutlineRefresh/></button>
+      <button onClick={() => fetchMeals()} className={`${styles.button} btn`}>
+        <HiOutlineRefresh />
+      </button>
       <div className={styles.content}>
         {meals.map((meal) => (
           <div key={meal.idMeal} className={styles.card}>
@@ -75,6 +78,9 @@ const Recipe = () => {
                 className={`${styles.button} btn`}>
                 Details
               </button>
+              <Link onClick={() => handleDetailsClick(meal)}>
+                <CiHeart color='red' size='20px' />
+              </Link>
             </div>
           </div>
         ))}
