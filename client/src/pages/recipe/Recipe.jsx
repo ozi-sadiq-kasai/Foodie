@@ -8,6 +8,7 @@ import Modal from '../../components/modal/Modal.jsx';
 import { ImYoutube2 } from 'react-icons/im';
 import { HiOutlineRefresh } from 'react-icons/hi';
 import { CiHeart } from 'react-icons/ci';
+import axios from 'axios'
 
 const Recipe = () => {
   const [meals, setMeals] = useState([]);
@@ -48,6 +49,18 @@ const Recipe = () => {
     setSelectedMeal(null); // Reset selected meal
   };
 
+  const handleFavouritesClick = async (meal) => {
+    setSelectedMeal(meal); // Set the selected meal to display in the modal
+    try {
+      const response = await axios.post('http://localhost:4000/api/meals', meal);
+      console.log('Meal saved successfully:', response.data);
+    } catch (error) {
+      console.error('Error saving meal:', error.response?.data || error.message);
+    }
+  };
+  
+  
+
   if (loading) return <p>Loading meals...</p>; // Show loading state
   if (error) return <p>Error: {error}</p>; // Show error state
 
@@ -78,7 +91,7 @@ const Recipe = () => {
                 className={`${styles.button} btn`}>
                 Details
               </button>
-              <Link onClick={() => handleDetailsClick(meal)}>
+              <Link onClick={() => handleFavouritesClick(meal)}to='/favourite'>
                 <CiHeart color='red' size='20px' />
               </Link>
             </div>

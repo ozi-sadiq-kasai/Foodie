@@ -6,6 +6,7 @@ import passport from 'passport';
 import { configurePassport } from './utils/passport.js';
 import passportRoutes from './routes/passportRoute.js';
 import localAuthRoutes from './routes/localAuthRoute.js';
+import favouriteMeals from './routes/mealsRoute.js';
 import cors from 'cors';
 
 const app = express();
@@ -40,6 +41,7 @@ app.use(passport.session());
 // Routes
 app.use(passportRoutes);
 app.use(localAuthRoutes);
+app.use(favouriteMeals);
 
 // Connect to MongoDB and StartServer
 const connectServer = async () => {

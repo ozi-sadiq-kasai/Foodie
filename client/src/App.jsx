@@ -8,6 +8,7 @@ import Breakfast from './pages/breakfast/Breakfast';
 import Dessert from './pages/dessert/Dessert';
 import Beef from './pages/beef/Beef';
 import Vegetarian from './pages/vegetarian/Vegetarian';
+import Favourite from './pages/favourite/Favourite';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
      <Route path="/beef" element={<Beef />} />
      <Route path="/dessert" element={<Dessert />} />
      <Route path="/breakfast" element={<Breakfast />} />
+     <Route path="/favourite" element={<Favourite />} />
     </Routes>
   )
 }

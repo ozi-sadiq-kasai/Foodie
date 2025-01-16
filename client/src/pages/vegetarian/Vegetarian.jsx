@@ -6,6 +6,8 @@ import SmallNav from '../../components/smallNav/SmallNav.jsx';
 import Modal from '../../components/modal/Modal.jsx';
 import { ImYoutube2 } from 'react-icons/im';
 import { Link } from 'react-router-dom';
+import { CiHeart } from 'react-icons/ci';
+import axios from 'axios'
 
 
 const Vegetarian = () => {
@@ -49,6 +51,16 @@ const Vegetarian = () => {
     setSelectedMeal(null); // Reset selected meal
   };
 
+  const handleFavouritesClick = async (meal) => {
+    setSelectedMeal(meal); // Set the selected meal to display in the modal
+    try {
+      const response = await axios.post('http://localhost:4000/api/meals', meal);
+      console.log('Meal saved successfully:', response.data);
+    } catch (error) {
+      console.error('Error saving meal:', error.response?.data || error.message);
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -78,6 +90,9 @@ const Vegetarian = () => {
                 className={`${styles.button} btn`}>
                 Details
               </button>
+              <Link onClick={() => handleFavouritesClick(meal)}to='/favourite'>
+                <CiHeart color='red' size='20px' />
+              </Link>
             </div>
           </div>
         ))}
